@@ -1,0 +1,22 @@
+version: 1
+control-service:
+   "hostname": "<%= node[:fqdn] %>"
+   "port": 4524
+   dataset:
+      backend: "aws"
+      region: "us-east-1"
+      zone: "us-east-1a"
+      access_key_id: ""
+      secret_access_key: ""
+
+#  dataset:
+#      backend: "vsphere_flocker_plugin"
+#      vc_ip: "{VC_IP}"                        # VC IP address
+#      username: "{VC_Username}"               # VC privileged user
+#      password: "{VC_Password}"               # VC privileged user password
+#      datacenter_name: "Datacenter"           # VC datacenter name
+#      datastore_name: "vsphereDatastore"      # VC datastore name as above
+#      ssl_verify_cert: no                     # VC SSL cert verification
+#      ssl_key_file: ""                        #    SSL keyfile path
+#      ssl_cert_file: ""                       #    SSL certfile path
+#      ssl_thumbprint: ""                      #    SSL host thumbprint

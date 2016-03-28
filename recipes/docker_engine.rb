@@ -3,7 +3,12 @@
 # Recipe:: default
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
-include_recipe 'yum-docker'
+case node['platform']
+when 'debian', 'ubuntu'
+
+when 'redhat', 'centos', 'fedora'
+  include_recipe 'yum-docker'
+end
 
 
 # Make sure that the key.json file is deleted (happens if it is a clone machine with Docker)
@@ -37,7 +42,7 @@ end
 
 # Start the Docker Service
 # Chris K (2/16/2016) - This is not up to date with Docker Engine 1.10.1, if using 1.10.1+
-# we will need to wait for the docker cookbook to get updated or use the enable_docker_engine 
+# we will need to wait for the docker cookbook to get updated or use the enable_docker_engine
 # AND start_docker_engine
 docker_service 'default' do
   log_opts 'max-size=100m'

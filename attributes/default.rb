@@ -2,12 +2,16 @@
 # @todo: how to upgrade -- check the version and do an only_if
 # Also, need to upgrade the master(s) first
 # docker --version <- need to do some grepping
-default['docker_engine_version'] = '1.9.1'
-default['docker_engine_arch'] = '-1.el7.cento'
+default['docker_engine_arch'] = '-1.el7.centos'
+default['docker_engine_version'] = '1.10.3'
+
+default['flocker-version'] = '1.10.2'
+default['flocker-clustername'] = 'mycluster'
+default['flocker-nodes'] = 2
 
 # What docker UCP version to use?
 # @todo: how to upgrade? -- check the version and do an only_if
-default['docker_ucp_version'] = '0.7.1'
+default['docker_ucp_version'] = '1.0.0'
 
 # What version of Jenkins should we pull?
 default['docker_jenkins_version'] = 'latest'
