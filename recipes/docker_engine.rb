@@ -6,6 +6,22 @@
 case node['platform']
 when 'debian', 'ubuntu'
 
+
+  #include_recipe 'apt-docker'
+  apt_repository 'docker' do
+    uri 'https://apt.dockerproject.org/repo'
+    components ['ubuntu-trusty', 'main']
+    key '58118E89F3A912897C070ADBF76221572C52609D'
+    keyserver 'p80.pool.sks-keyservers.net'
+    notifies :run, 'execute[apt-up]', :immediately
+  end
+
+
+  execute 'apt-up' do
+    command 'apt-get update'
+    action :nothing
+  end
+
 when 'redhat', 'centos', 'fedora'
   include_recipe 'yum-docker'
 end
@@ -41,6 +57,7 @@ end
 
 
 # Start the Docker Service
+if node['platform'] == 'redhat'
 # Chris K (2/16/2016) - This is not up to date with Docker Engine 1.10.1, if using 1.10.1+
 # we will need to wait for the docker cookbook to get updated or use the enable_docker_engine
 # AND start_docker_engine
@@ -50,7 +67,11 @@ docker_service 'default' do
   storage_driver 'overlay'
   action [:create, :start]
 end
-
+else
+  docker_service 'default' do
+    action [:create, :start]
+  end
+end
 #execute 'enable_docker_engine' do
 #  command "systemctl enable docker.service"
 #end

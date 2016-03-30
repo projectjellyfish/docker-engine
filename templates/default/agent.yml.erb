@@ -1,13 +1,13 @@
 version: 1
 control-service:
-   "hostname": "<%= node[:fqdn] %>"
-   "port": 4524
-   dataset:
-      backend: "aws"
-      region: "us-east-1"
-      zone: "us-east-1a"
-      access_key_id: ""
-      secret_access_key: ""
+   hostname: "<%= node[:fqdn] %>"
+   port: 4524
+dataset:
+   backend: "aws"
+   region: "us-east-1"
+   zone: "us-east-1e"
+   access_key_id: ""
+   secret_access_key: ""
 
 #  dataset:
 #      backend: "vsphere_flocker_plugin"
